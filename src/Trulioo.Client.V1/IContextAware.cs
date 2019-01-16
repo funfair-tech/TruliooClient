@@ -1,5 +1,8 @@
 ﻿namespace Trulioo.Client.V1
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IContextAware
     {
         /// <summary>

@@ -2,6 +2,9 @@
 
 namespace Trulioo.Client.V1.Tests
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Connection : Basefact
     {
         [Fact]
@@ -17,7 +20,7 @@ namespace Trulioo.Client.V1.Tests
 
                 //Assert
                 Assert.NotNull(response);
-                Assert.True(response.Contains(userName));
+                Assert.Contains("testuser", response);
             }
         }
 

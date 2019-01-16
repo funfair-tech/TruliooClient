@@ -5,6 +5,10 @@ namespace Trulioo.Client.V1.Tests
 {
     public abstract class Basefact
     {
+        private const string username = "tbc";
+        private const string password = "tbc";
+        private const string host = "tbc";
+
         protected const string IdentityVerificationConfigurationName = "Identity Verification";
 
         static Basefact()
@@ -15,15 +19,16 @@ namespace Trulioo.Client.V1.Tests
 #endif
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected TruliooApiClient GetTruliooClient()
         {
-            var username = ConfigurationManager.AppSettings["username"];
-            var password = ConfigurationManager.AppSettings["password"];
-
             Context context = new Context(username, password);
-            if (!string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings["host"]))
+            if (!string.IsNullOrWhiteSpace(host))
             {
-                context.Host = ConfigurationManager.AppSettings["host"];
+                context.Host = host;
             }
 
             return new TruliooApiClient(context);

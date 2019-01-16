@@ -11,5 +11,13 @@ namespace Trulioo.Client.V1.Model
         /// 
         /// </summary>
         public List<DataField> InputFields { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transactionId"></param>
+        public TransactionRecordResult(string transactionId) : base(transactionId)
+        {
+        }
     }
 }

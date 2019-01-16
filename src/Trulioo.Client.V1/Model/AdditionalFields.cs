@@ -1,5 +1,8 @@
 ﻿namespace Trulioo.Client.V1.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AdditionalFields
     {
         /// <summary>

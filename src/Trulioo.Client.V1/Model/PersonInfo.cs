@@ -2,6 +2,9 @@
 
 namespace Trulioo.Client.V1.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PersonInfo
     {
         /// <summary>
@@ -58,6 +61,9 @@ namespace Trulioo.Client.V1.Model
         /// </summary>
         public string Gender { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AdditionalFields AdditionalFields { get; set; }
     }
 }
