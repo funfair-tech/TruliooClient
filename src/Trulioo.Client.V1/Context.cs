@@ -22,21 +22,6 @@ namespace Trulioo.Client.V1
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Context"/> class with a host, protocol by default is HTTPS.
-        /// </summary>
-        /// <param name="userName">User name for current context</param>
-        /// <param name="password">Password for current context</param>
-        /// <param name="timeout">The HTTP timeout. 100 seconds by default.</param>
-        /// <exception name="ArgumentException">
-        /// <paramref name="userName"/> is <c>null</c> or empty.
-        /// <paramref name="password"/> is <c>null</c> or empty.
-        /// </exception>
-        public Context(string userName, string password, TimeSpan timeout = default(TimeSpan))
-            : this(userName, password, timeout, null)
-        {
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Context"/> class with a host and optional message handler, protocol by default is HTTPS.
         /// </summary>
         /// <param name="userName">User name for current context</param>
@@ -53,7 +38,7 @@ namespace Trulioo.Client.V1
         /// <paramref name="userName"/> is <c>null</c> or empty.
         /// <paramref name="password"/> is <c>null</c> or empty.
         /// </exception>
-        public Context(string userName, string password, TimeSpan timeout, HttpMessageHandler handler, bool disposeHandler = true)
+        public Context(string userName, string password, HttpClient client)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentException(nameof(userName));
@@ -61,10 +46,7 @@ namespace Trulioo.Client.V1
                 throw new ArgumentException(nameof(password));
 
             _credentials = encodeCredentials(userName, password);
-            _httpClient = handler == null ? new HttpClient(new GZipDecompressionHandler(), disposeHandler) : new HttpClient(handler, disposeHandler);
-
-            if (timeout != default(TimeSpan))
-                _httpClient.Timeout = timeout;
+            _httpClient = client;
 
             if (_httpClient.DefaultRequestHeaders != null && _httpClient.DefaultRequestHeaders.Accept != null)
             {

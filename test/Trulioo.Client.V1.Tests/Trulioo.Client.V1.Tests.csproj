@@ -4,16 +4,21 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Optimize>true</Optimize>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- when RootNamespace != the csproj file name -->
-    <RootNamespace>fdhdf</RootNamespace>
+    <RootNamespace>Trulioo.Client.V1.Tests</RootNamespace>
     <!-- when AssemblyName != the csproj file name -->
-    <AssemblyName>dfgfdgfd</AssemblyName>
+    <AssemblyName>Trulioo.Client.V1.Tests</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>$(DefineConstants);MY_CUSTOM_CONSTANT</DefineConstants>
+    <DefineConstants></DefineConstants>
     <Platform>x64 or x86</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <WarningsAsErrors />
+    <DocumentationFile />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />

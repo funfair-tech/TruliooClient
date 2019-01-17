@@ -28,28 +28,6 @@ namespace Trulioo.Client.V1
             Context = context;
         }
 
-        /// <summary>
-        ///  Initializes a new instance of the <see cref="TruliooApiClient"/> class.
-        /// </summary>
-        /// <param name="userName">
-        ///  The username for the new <see cref="TruliooApiClient"/>.
-        /// </param>
-        /// <param name="password">
-        ///  The password for the new <see cref="TruliooApiClient"/>.
-        /// </param>
-        /// ### <exception name="ArgumentException">
-        /// <paramref name="userName"/> is <c>null</c>.
-        /// <paramref name="password"/> is <c>null</c>.
-        /// </exception>
-        public TruliooApiClient(string userName, string password)
-             : this(new Context(userName, password))
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-        }
-
         #endregion Constructors
 
         #region Properties
