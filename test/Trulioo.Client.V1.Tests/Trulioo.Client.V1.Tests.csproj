@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- when RootNamespace != the csproj file name -->
     <RootNamespace>Trulioo.Client.V1.Tests</RootNamespace>
@@ -30,5 +30,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Trulioo.Client.V1\Trulioo.Client.V1.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>

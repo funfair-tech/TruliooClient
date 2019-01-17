@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -52,7 +53,7 @@ namespace Trulioo.Client.V1
             {
                 _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", "trulioo-sdk-csharp/1.1");
-                _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip");
+                //_httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip"); ** breaks unit tests! **
             }
         }
 
@@ -291,9 +292,14 @@ namespace Trulioo.Client.V1
         {
             var response = await sendInternalAsync(httpMethod, ns, resource, content).ConfigureAwait(false);
 
+            var hjdf = typeof(TReturn);
+
+            var bob = await (response as HttpResponseMessage).Content.ReadAsStringAsync().ConfigureAwait(false);
+            
+
             var message = typeof(TReturn) == typeof(string)
                           ? await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-                          : JsonConvert.DeserializeObject<TReturn>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+                          : JsonConvert.DeserializeObject<TReturn>(bob);
 
             return message;
         }
