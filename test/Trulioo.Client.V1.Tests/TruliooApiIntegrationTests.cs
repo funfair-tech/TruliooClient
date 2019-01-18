@@ -1,20 +1,54 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Trulioo.Client.V1.Model;
 using Xunit;
 using Xunit.Abstractions;
+using System.Collections.Generic;
 
 namespace Trulioo.Client.V1.Tests
 {
-    public class OtherTests : Basefact
+    /// <summary>
+    /// Integration tests against the Trulioo API using demo credentials.
+    /// Verifies the basics against each public endpoint.
+    /// </summary>
+    public class TruliooApiIntegrationTests : Basefact
     {
         private readonly ITestOutputHelper _output;
-        private string ConfigurationName => "Identity Verification";
 
-        public OtherTests(ITestOutputHelper output)
+        public TruliooApiIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
+        }
+
+        [Fact]
+        public async void SayHello_Success()
+        {
+            //Arrange
+            using (var service = GetTruliooClient())
+            {
+                var userName = "testuser";
+
+                //Act
+                var response = await service.Connection.SayHelloAsync(userName);
+
+                //Assert
+                Assert.NotNull(response);
+                Assert.Contains("testuser", response);
+            }
+        }
+
+        [Fact]
+        public async void Authentication_Success()
+        {
+            //Arrange
+            using (var service = GetTruliooClient())
+            {
+                //Act
+                var response = await service.Connection.TestAuthenticationAsync();
+
+                //Assert
+                Assert.NotNull(response);
+            }
         }
 
         [Fact]
@@ -27,31 +61,37 @@ namespace Trulioo.Client.V1.Tests
             countryCodesEnumerated.ForEach(x => _output.WriteLine(x));
         }
 
+        /// <remarks>
+        /// Inline data items should match the values returned from GetCountryCodesAsync(ConfigurationName)
+        /// </remarks>
         [Theory]
         [InlineData("US")]
         [InlineData("CA")]
         [InlineData("NO")]
         [InlineData("NZ")]
         [InlineData("GB")]
-        public async Task Should_Get_Consents(string twoDigitIso)
+        public async Task Should_Get_Consents(string twoCharacterCountryIsoCode)
         {
             var truliooClient = GetTruliooClient();
-            var consents = await truliooClient.Configuration.GetСonsentsAsync(twoDigitIso, ConfigurationName);
+            var consents = await truliooClient.Configuration.GetСonsentsAsync(twoCharacterCountryIsoCode, ConfigurationName);
             var countryCodesEnumerated = consents.ToList();
             Assert.NotNull(consents);
             countryCodesEnumerated.ForEach(x => _output.WriteLine(x));
         }
 
+        /// <remarks>
+        /// Inline data items should match the values returned from GetCountryCodesAsync(ConfigurationName)
+        /// </remarks>
         [Theory]
         [InlineData("US")]
         [InlineData("CA")]
         [InlineData("NO")]
         [InlineData("NZ")]
         [InlineData("GB")]
-        public async Task Should_Get_Some_Fields(string twoDigitIso)
+        public async Task Should_Get_Fields_For_Given_Territory(string twoCharacterCountryIsoCode)
         {
             var truliooClient = GetTruliooClient();
-            var fields = await truliooClient.Configuration.GetFieldsAsync(twoDigitIso, ConfigurationName);
+            var fields = await truliooClient.Configuration.GetFieldsAsync(twoCharacterCountryIsoCode, ConfigurationName);
             _output.WriteLine($"Fields: {fields}");
             var fieldsEnumerated = fields.ToList();
             Assert.NotNull(fields);
@@ -64,7 +104,7 @@ namespace Trulioo.Client.V1.Tests
         }
 
         [Fact]
-        public async Task Should_Verify_A_Test_Entity()
+        public async Task Should_Verify_A_Test_Entity_With_Identity_Match()
         {
             var truliooClient = GetTruliooClient();
             var request = GetVerifyRequest1();
@@ -74,6 +114,10 @@ namespace Trulioo.Client.V1.Tests
             Assert.True(verifyResult.Record.RecordStatus == "match");
         }
 
+        /// <remarks>
+        /// one (of several) test entities that are available in demo mode.
+        /// data comes from the api call to testentities - see https://developer.trulioo.com/reference#get-test-entities
+        /// </remarks>
         private static VerifyRequest GetVerifyRequest1()
         {
             var request = new VerifyRequest
