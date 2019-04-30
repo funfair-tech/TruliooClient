@@ -4,10 +4,11 @@
 
 - this is the base conversion of the trulioo sdk, from .net 4.6 to .net standard 2.0
 - this is the starting point for work to be done within the funpassport solution, but is not the finished, packaged, funfair-ised version.
+- last sync with remote fork 30/04/2019
 
 * upstream readme below
 
-## Version 2.1.7.0
+## Version 2.1.9.0
 
 The Trulioo Software Development Kit (SDK) for C# contains library code designed to enable developers to customize the integration of GlobalGateway into your automated business processes or website.
 
