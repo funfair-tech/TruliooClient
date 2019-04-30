@@ -32,7 +32,8 @@ namespace Trulioo.Client.V1
         /// </summary>
         /// <param name="userName">User name for current context</param>
         /// <param name="password">Password for current context</param>
-        /// <param name="client">The fully configured http client, from the application context.</param>
+        /// <param name="httpClientFactory">The httpclient factory</param>
+        /// <param name="httpClientName">the name of the httpclient</param>
         /// <paramref name="userName" />
         /// is
         /// <c>null</c>
