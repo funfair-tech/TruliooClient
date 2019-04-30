@@ -1,21 +1,26 @@
-﻿namespace Trulioo.Client.V1.Exceptions
+namespace Trulioo.Client.V1.Exceptions
 {
-    /// <summary>
-    /// The exception that is thrown when a request fails.
-    /// </summary>
-    /// <seealso cref="T:Trulioo.Client.RequestException"/>
+    /// <inheritdoc />
     public sealed class InternalServerErrorException : RequestException
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InternalServerErrorException"/> class.
-        /// </summary>
-        /// <param name="message">
-        /// An object representing an HTTP response message including the status code and data.
-        /// </param>
-        /// <param name="code"></param>
-        /// <param name="reason"></param>
+        /// <inheritdoc />
         internal InternalServerErrorException(string message, int code, string reason)
             : base(message, code, reason)
+        {
+        }
+
+        /// <inheritdoc />
+        public InternalServerErrorException() : base("", -1, "")
+        {
+        }
+
+        /// <inheritdoc />
+        public InternalServerErrorException(string message) : base(message, -1, "")
+        {
+        }
+
+        /// <inheritdoc />
+        public InternalServerErrorException(string message, System.Exception innerException) : base(message, -1, innerException.Message)
         {
         }
     }

@@ -1,21 +1,31 @@
-﻿namespace Trulioo.Client.V1.Exceptions
+using System;
+
+namespace Trulioo.Client.V1.Exceptions
 {
-    /// <summary>
-    /// The exception that is thrown when the resource is not found.
-    /// </summary>
-    /// <seealso cref="T:Trulioo.Client.RequestException"/>
+    /// <inheritdoc />
     public sealed class ResourceNotFoundException : RequestException
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResourceNotFoundException"/> class.
-        /// </summary>
-        /// <param name="message">
-        /// An object representing an HTTP response message including the status code and data.
-        /// </param>
-        /// <param name="code"></param>
-        /// <param name="reason"></param>
-        internal ResourceNotFoundException(string message, int code, string reason) 
+        /// <inheritdoc />
+        internal ResourceNotFoundException(string message, int code, string reason)
             : base(message, code, reason)
+        {
+        }
+
+        /// <inheritdoc />
+        public ResourceNotFoundException()
+            : base(message: "", code: -1, reason: "")
+        {
+        }
+
+        /// <inheritdoc />
+        public ResourceNotFoundException(string message)
+            : base(message, code: -1, reason: "")
+        {
+        }
+
+        /// <inheritdoc />
+        public ResourceNotFoundException(string message, Exception innerException)
+            : base(message, code: -1, innerException.Message)
         {
         }
     }

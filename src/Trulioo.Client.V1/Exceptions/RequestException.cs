@@ -1,62 +1,52 @@
-﻿using System;
+using System;
 
 namespace Trulioo.Client.V1.Exceptions
 {
-    /// <summary>
-    /// The exception that is thrown when a Trulioo service request fails.
-    /// </summary>
-    /// <seealso cref="T:System.Exception"/>
+    /// <inheritdoc />
     public class RequestException : Exception
     {
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RequestException"/> class.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="code"></param>
-        /// <param name="reason"></param>
+        /// <inheritdoc />
         protected internal RequestException(string message, int code, string reason)
             : base(message)
         {
-            Code = code;
-            Reason = reason;
+            this.Code = code;
+            this.Reason = reason;
         }
 
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the code of the current <see cref="RequestException"/>.
-        /// </summary>
-        /// <value>
-        /// Code of the current <see cref="RequestException"/>.
-        /// </value>
-        public int Code { get; set; }
-
-        /// <summary>
-        /// Gets the reason of the current <see cref="RequestException"/>.
-        /// </summary>
-        /// <value>
-        /// Reason of the current <see cref="RequestException"/>.
-        /// </value>
-        public string Reason { get; set; }
-
-        /// <summary>
-        /// Gets the message of the current <see cref="RequestException"/>.
-        /// </summary>
-        /// <value>
-        /// Message of the current <see cref="RequestException"/>.
-        /// </value>
-        public override string Message
+        /// <inheritdoc />
+        public RequestException()
         {
-            get
-            {
-                return string.IsNullOrEmpty(base.Message) ? Reason : base.Message;
-            }
         }
 
-        #endregion
+        /// <inheritdoc />
+        public RequestException(string message)
+            : base(message)
+        {
+        }
+
+        /// <inheritdoc />
+        public RequestException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
+        /// <summary>
+        ///     Gets the code of the current <see cref="RequestException" />.
+        /// </summary>
+        /// <value>
+        ///     Code of the current <see cref="RequestException" />.
+        /// </value>
+        private int Code { get; }
+
+        /// <summary>
+        ///     Gets the reason of the current <see cref="RequestException" />.
+        /// </summary>
+        /// <value>
+        ///     Reason of the current <see cref="RequestException" />.
+        /// </value>
+        private string Reason { get; }
+
+        /// <inheritdoc />
+        public override string Message => string.IsNullOrEmpty(base.Message) ? this.Reason : base.Message;
     }
 }

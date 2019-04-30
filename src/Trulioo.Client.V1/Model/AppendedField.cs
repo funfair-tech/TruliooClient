@@ -1,11 +1,11 @@
-﻿namespace Trulioo.Client.V1.Model
+namespace Trulioo.Client.V1.Model
 {
     /// <summary>
     /// 
     /// </summary>
     public class AppendedField
     {
-        internal AppendedField()
+        public AppendedField()
         { }
 
         /// <summary>
@@ -14,8 +14,8 @@
         public string FieldName { get; set; }
 
         /// <summary>
-        /// can be string or Object(only if FieldName is WatchlistDetails)
+        /// 
         /// </summary>
-        public dynamic Data { get; set; }
+        public string Data { get; set; }
     }
 }

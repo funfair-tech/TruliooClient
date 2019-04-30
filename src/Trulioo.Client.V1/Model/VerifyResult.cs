@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Trulioo.Client.V1.Model.Errors;
 
@@ -15,12 +15,13 @@ namespace Trulioo.Client.V1.Model
         /// <param name="transactionId"></param>
         public VerifyResult(string transactionId)
         {
-            TransactionID = transactionId;
+            this.TransactionID = transactionId;
         }
 
         /// <summary>
         /// 
         /// </summary>
+        // ReSharper disable once InconsistentNaming not our code
         public string TransactionID { get; set; }
 
         /// <summary>

@@ -1,12 +1,10 @@
-﻿namespace Trulioo.Client.V1.Model.Errors
+namespace Trulioo.Client.V1.Model.Errors
 {
     /// <summary>
     /// Provides a class that represents a Trulioo service response error message.
     /// </summary>
     public class Error
     {
-        #region Properties
-
         /// <summary>
         /// Gets the code of the current <see cref="Error"/>.
         /// </summary>
@@ -31,22 +29,15 @@
         /// </value>
         public string Message { get; set; }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
         /// Gets a string representation for the current <see cref="Error"/>.
         /// </summary>
         /// <returns>
         /// A string representation of the current <see cref="Error"/>.
         /// </returns>
-        /// <seealso cref="M:System.Object.ToString()"/>
         public override string ToString()
         {
-            return $"{Code}:{Message}";
+            return $"{this.Code}:{this.Message}";
         }
-
-        #endregion
     }
 }

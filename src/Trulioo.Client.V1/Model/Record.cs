@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Trulioo.Client.V1.Model.Errors;
 
 namespace Trulioo.Client.V1.Model
@@ -11,6 +11,7 @@ namespace Trulioo.Client.V1.Model
         /// <summary>
         /// 
         /// </summary>
+        // ReSharper disable once InconsistentNaming Not our code
         public string TransactionRecordID { get; set; }
 
         /// <summary>

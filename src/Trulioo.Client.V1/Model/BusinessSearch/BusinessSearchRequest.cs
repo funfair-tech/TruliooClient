@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Trulioo.Client.V1.Model.BusinessSearch
         /// <summary>
         /// If set, the transaction will run asyncronously and trulioo will try to update the client with transaction state updates until completed.
         /// </summary>
+        [SuppressMessage("CA1056", "CA1056", Justification = "Not our code.")]
         public string CallBackUrl { get; set; }
 
         /// <summary>

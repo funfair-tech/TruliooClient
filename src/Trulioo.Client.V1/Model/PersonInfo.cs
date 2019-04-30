@@ -1,5 +1,3 @@
-﻿using Trulioo.Client.V1.Model.PersonalInfoFields;
-
 namespace Trulioo.Client.V1.Model
 {
     /// <summary>
@@ -33,6 +31,7 @@ namespace Trulioo.Client.V1.Model
         /// Enter full name in ISO Latin-1 character set
         /// Used for data sources that require the person’s name in ISO Latin-1 format (i.e. as Passport MRZ)
         /// </summary>
+        // ReSharper disable once InconsistentNaming not our code
         public string ISOLatin1Name { get; set; }
 
         /// <summary>
